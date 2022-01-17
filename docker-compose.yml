@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+
+  postgres:
+    image: postgres:alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=${PSQL_USERNAME}
+      - POSTGRES_PASSWORD=${PSQL_PASSWORD}
+      - POSTGRES_DB=${PSQL_DATABASE}
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=development
+    environment:
+      - PORT=${PORT}
+      - HOST=${HOST}
+      - PSQL_HOST=${PSQL_HOST}
+      - PSQL_PORT=${PSQL_PORT}
+      - PSQL_DATABASE=${PSQL_DATABASE}
+      - PSQL_PASSWORD=${PSQL_PASSWORD}
+      - PSQL_USERNAME=${PSQL_USERNAME}
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+    links:
+      - postgres:postgres
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
