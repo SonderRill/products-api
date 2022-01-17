@@ -9,5 +9,3 @@ migrations work in production mode
 $ npm run migration:generate {name}
 $ migration:run
 ```
-
-http://localhost:3000/api/ swagger
