@@ -13,7 +13,7 @@
         "start:debug": "nest start --debug --watch",
         "start:prod": "node dist/main",
         "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-        "lint:ts": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix --plugin tsc --rule 'tsc/config: [2, {configFile: \"./tsconfig.json\"}]'",
+        "lint:ts": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix --plugin tsc --rule \"tsc/config: [2, {configFile: \"./tsconfig.json\"}]\"",
         "release": "standard-version --commit-all",
         "first-release": "standard-version --commit-all --first-release",
         "typeorm:cli": "node --require ts-node/register ./node_modules/typeorm/cli.js --config src/config/orm-migration.config.ts",
